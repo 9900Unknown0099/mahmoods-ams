@@ -26,11 +26,13 @@ GitHub Pages hosts the website; GitHub Releases can host versioned APK downloads
 
 The current site retains its existing APK download path. Do not change it to a release URL until the release asset has actually been published and verified.
 
-## Updating the APK
+## Releasing a new version (automatic)
+1. Name the new file with the next version: `Mahmoods-AMS-v1.1.apk`, then `v1.2`, and so on.
+2. Upload it into the `downloads` folder on GitHub (Add file -> Upload files). Do **not** delete the old APKs.
+3. Optional: add `downloads/Mahmoods-AMS-v1.1.txt` with one change per line; it shows as "What's new".
+4. That's it. The GitHub Action (`.github/workflows/update-downloads.yml`) runs, makes the highest version the main Download button, moves every older one into **Previous versions**, and refreshes the size and SHA-256. Give it about a minute.
 
-1. Replace `downloads/Mahmoods-AMS-v1.0.apk` with the new signed APK (or update the filename and all references consistently).
-2. Run `python tools/update_checksum.py` from the repository root to refresh checksum/download metadata where supported.
-3. Update the version text and links as needed, then commit the changes.
+No Action? Run `python3 tools/update_site.py` locally, then commit and push.
 
 ## Security and publishing notes
 
@@ -50,3 +52,6 @@ The current site retains its existing APK download path. Do not change it to a r
 - `404.html` — not-found page
 - `assets/` — CSS, JavaScript, and images
 - `downloads/` — current APK
+
+## How installed apps learn about updates
+`version.json` (written by `tools/update_site.py`, i.e. by the GitHub Action) holds the newest version number, its download link and the notes from `downloads/Mahmoods-AMS-vX.Y.txt`. The app reads it, shows "Update available" on its About screen and sends a notification. Keep it in the repo root and don't edit it by hand.
