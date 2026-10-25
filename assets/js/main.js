@@ -106,7 +106,7 @@
   const sc = $('[data-showcase]');
   let lastIdx = -1;
   const updateShowcase = () => {
-    if (!sc || innerWidth <= 860) return;
+    if (!sc) return;
     const steps = $$('.step', sc), imgs = $$('.stage .screen img', sc), bars = $$('.progress i', sc);
     const r = sc.getBoundingClientRect();
     const total = sc.offsetHeight - innerHeight;
@@ -146,5 +146,5 @@
   addEventListener('scroll', onScroll, { passive: true });
   addEventListener('resize', () => { lastIdx = -1; onScroll(); });
   updateNav(); updateShowcase();
-  const first = $('.step', sc || document); if (first && sc && innerWidth > 860) { $$('.step', sc)[0].classList.add('active'); $$('.stage .screen img', sc)[0].classList.add('active'); $$('.progress i', sc)[0].classList.add('active'); }
+  const first = $('.step', sc || document); if (first && sc) { $$('.step', sc)[0].classList.add('active'); $$('.stage .screen img', sc)[0].classList.add('active'); $$('.progress i', sc)[0].classList.add('active'); }
 })();

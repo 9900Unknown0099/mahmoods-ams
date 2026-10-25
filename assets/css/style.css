@@ -203,7 +203,7 @@ section { position: relative; }
   box-shadow: 0 0 0 1.5px #3a3a3e inset, 0 0 0 1px #000, 0 40px 90px -20px rgba(0, 0, 0, .6), 0 30px 60px -30px rgba(0, 0, 0, .5);
   transform-style: preserve-3d;
 }
-.phone::before { /* camera pill */
+.phone::before { display: none; /* camera pill hidden: it covered the app title in screenshots */
   content: ""; position: absolute; top: calc(var(--pw, 300px) * .05); left: 50%; width: 22%; height: calc(var(--pw, 300px) * .03);
   background: #000; border-radius: 20px; transform: translateX(-50%); z-index: 3;
 }
@@ -471,14 +471,21 @@ table.spec td { font-weight: 600; word-break: break-word; }
 @media (max-width: 860px) {
   .nav-links, .nav-cta { display: none; }
   .menu-btn { display: block; }
-  .showcase { height: auto; padding: 90px 0; }
-  .showcase-sticky { position: static; height: auto; display: block; }
-  .showcase-grid { grid-template-columns: 1fr; gap: 0; }
-  .stage, .progress { display: none; }
-  .steps { height: auto; display: grid; gap: 90px; }
-  .step { position: static; opacity: 1; transform: none; filter: none; pointer-events: auto; }
-  .step-img { display: flex; justify-content: center; margin-top: 40px; }
-  .step-img .phone { --pw: min(260px, 70vw); }
+  /* Mobile keeps the same scroll-pinned showcase as desktop: text on top, phone below, both stay put while you scroll. */
+  .showcase { height: 400vh; }
+  .showcase-sticky { height: 100vh; height: 100svh; align-items: stretch; padding: calc(var(--nav-h) + 20px) 0 20px; }
+  .showcase-grid { grid-template-columns: 1fr; grid-template-rows: auto minmax(0, 1fr); gap: 12px; width: min(1180px, 100% - 40px); align-items: start; }
+  .steps { height: clamp(210px, 38vh, 300px); height: clamp(210px, 38svh, 300px); }
+  .step { justify-content: flex-start; }
+  .step .num { margin-bottom: 8px; font-size: 12px; }
+  .step .h2 { font-size: clamp(26px, 7.6vw, 36px) !important; }
+  .step ul { margin-top: 14px; gap: 7px; }
+  .step li { font-size: 14.5px; line-height: 1.38; gap: 10px; }
+  .step li::before { width: 16px; height: 16px; background-size: 10px; }
+  .stage { align-self: stretch; align-items: flex-start; padding-top: 4px; }
+  .stage .phone { --pw: min(44vw, 20vh); --pw: min(44vw, 21svh); }
+  .progress { left: auto; right: 0; }
+  .step-img { display: none; }
   .frow, .pub, .grid-2 { grid-template-columns: 1fr; }
   .frow.flip .ftext { order: 0; }
   .dl-card { grid-template-columns: 1fr; text-align: center; justify-items: center; }
@@ -499,3 +506,16 @@ table.spec td { font-weight: 600; word-break: break-word; }
   body { opacity: 1; }
   .rv, .rv-scale, .split .w > span { opacity: 1; transform: none; }
 }
+
+/* ---------- Previous versions ---------- */
+.ver-list { display: grid; gap: 14px; margin-top: 36px; }
+.ver { background: #fff; border: 1px solid #e5e5ea; border-radius: 22px; padding: 26px 28px; display: grid; grid-template-columns: 1fr auto; gap: 14px 24px; align-items: center; transition: transform .5s var(--ease-out), box-shadow .5s; }
+.ver:hover { transform: translateY(-4px); box-shadow: 0 24px 44px -28px rgba(0, 0, 0, .3); }
+.ver-main b { display: block; font-size: 22px; letter-spacing: -.03em; }
+.ver-main span { color: var(--gray-2); font-size: 15px; }
+.ver ul { grid-column: 1 / -1; margin: 0; padding-left: 20px; color: var(--gray-2); font-size: 15px; line-height: 1.55; }
+.ver-hash { grid-column: 1 / -1; font-size: 13px; color: var(--gray-2); word-break: break-all; }
+.ver .btn { padding: 12px 22px; font-size: 15px; }
+.notes { margin-top: 44px; padding: 28px 30px; border-radius: 22px; background: var(--mist); }
+.notes h3 { font-size: 20px; font-weight: 700; letter-spacing: -.03em; }
+@media (max-width: 560px) { .ver { grid-template-columns: 1fr; } .ver .btn { width: 100%; } }

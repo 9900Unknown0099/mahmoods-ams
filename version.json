@@ -1,7 +1,11 @@
 {
-  "versionName": "1.0",
-  "apkUrl": "downloads/Mahmoods-AMS-v1.0.apk",
+  "versionName": "1.3",
+  "apkUrl": "downloads/Mahmoods-AMS-v1.3.apk",
   "pageUrl": "download.html",
-  "notes": [],
-  "sha256": "f82cce65d6f4df86c5d639545515878a142af74e7ea18893024d96247af0c102"
+  "notes": [
+    "About screen: see your version, check for updates and get a notification when a new one is out",
+    "Admin can add extra profile and sign-up fields, and lock or unlock them",
+    "Fixed the roster freezing when tapping the Present, Late, Absent and Bunked tiles"
+  ],
+  "sha256": "b01bab04b12998e961e744866c69662f06c0641ddaf050c32687702b22cb3257"
 }

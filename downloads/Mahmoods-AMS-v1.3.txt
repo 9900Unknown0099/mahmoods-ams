@@ -1,0 +1,3 @@
+About screen: see your version, check for updates and get a notification when a new one is out
+Admin can add extra profile and sign-up fields, and lock or unlock them
+Fixed the roster freezing when tapping the Present, Late, Absent and Bunked tiles

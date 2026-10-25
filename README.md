@@ -55,3 +55,6 @@ No Action? Run `python3 tools/update_site.py` locally, then commit and push.
 
 ## How installed apps learn about updates
 `version.json` (written by `tools/update_site.py`, i.e. by the GitHub Action) holds the newest version number, its download link and the notes from `downloads/Mahmoods-AMS-vX.Y.txt`. The app reads it, shows "Update available" on its About screen and sends a notification. Keep it in the repo root and don't edit it by hand.
+
+## IMPORTANT: the hidden `.github` folder
+GitHub's "Upload files" drag-and-drop silently skips folders that start with a dot. Without `.github/workflows/update-downloads.yml` NOTHING updates automatically. Create it with **Add file -> Create new file**, type `.github/workflows/update-downloads.yml` as the name (typing the slashes makes the folders), paste the file's contents and commit. Also set **Settings -> Actions -> General -> Workflow permissions -> Read and write**.
